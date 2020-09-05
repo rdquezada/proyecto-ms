@@ -1,0 +1,22 @@
+server:
+  port: 3333
+spring:
+  application:
+    name: zuul-gateway
+zuul:
+  routes:
+    producto-ms:
+      path: /products/**
+      serviceId: producto-ms
+    usuario-ms:
+      path: /users/**
+      serviceId: usuario-ms
+    pedido-ms:
+      path: /orders/**
+      serviceId: pedido-ms
+#Registramos Zuul a Eureka Server
+eureka: 
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+        #registerWithEureka: false

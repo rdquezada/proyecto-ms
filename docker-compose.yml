@@ -1,0 +1,88 @@
+version: '3.3'
+services:
+ eureka-server:
+  build: ./eureka-server
+  ports:
+   - "8761:8761"
+  expose:
+   - "8761"
+  extra_hosts:
+   - "localhost:192.168.."
+ usuario-ms:
+  build: ./usuario-ms
+  ports:
+   - "8200:8200"
+  expose:
+   - "8200"
+  depends_on:
+   - eureka-server
+  links:
+   - eureka-server
+  extra_hosts:
+   - "localhost:192.168.."
+ producto-ms:
+  build: ./producto-ms
+  ports:
+   - "8300:8300"
+  expose:
+   - "8300"
+  depends_on:
+   - eureka-server
+  links:
+   - eureka-server
+  extra_hosts:
+   - "localhost:192.168.."
+ pedido-ms:
+  build: ./pedido-ms
+  ports:
+   - "8400:8400"
+  expose:
+   - "8400"
+  depends_on:
+   - eureka-server
+   - usuario-ms
+   - producto-ms
+  links:
+   - eureka-server
+   - usuario-ms
+   - producto-ms
+  extra_hosts:
+   - "localhost:192.168.."
+ zuul-gateway:
+  build: ./zuul-gateway
+  ports:
+   - "3333:3333"
+  expose:
+   - "3333"
+  depends_on:
+   - eureka-server
+   - usuario-ms
+   - producto-ms
+   - pedido-ms
+  links:
+   - eureka-server
+   - usuario-ms
+   - producto-ms
+   - pedido-ms
+  extra_hosts:
+   - "localhost:192.168.."
+ monitoreo-service:
+  build: ./monitoreo-service
+  ports:
+   - "8086:8086"
+  expose:
+   - "8086"
+  depends_on:
+   - eureka-server
+   - usuario-ms
+   - producto-ms
+   - pedido-ms
+   - zuul-gateway
+  links:
+   - eureka-server
+   - usuario-ms
+   - producto-ms
+   - pedido-ms
+   - zuul-gateway
+  extra_hosts:
+   - "localhost:192.168.."
