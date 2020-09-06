@@ -18,7 +18,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.0.4:3306/pedidodb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    url: jdbc:mysql://192.168.0.6:3306/pedidodb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: root
     password: root
   #boot:
