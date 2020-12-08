@@ -18,7 +18,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.30:3306/usuariodb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    url: jdbc:mysql://192.168.1.8:3306/usuariodb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: root
     password: root
   #boot:
